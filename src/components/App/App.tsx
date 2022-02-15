@@ -11,6 +11,7 @@ function App() {
         <h1>Code review todo</h1>
         <Input />
       </header>
+
       <div className={classes.line} />
     </div>
   );

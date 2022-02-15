@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Input from '../Input';
+import TodoList from '../TodoList';
 
 import classes from './App.module.css';
 
@@ -13,6 +14,8 @@ function App() {
       </header>
 
       <div className={classes.line} />
+
+      <TodoList />
     </div>
   );
 }

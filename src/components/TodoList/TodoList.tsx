@@ -1,9 +1,15 @@
 import React from 'react';
 
-import classes from './TodoList.module.css';
+import TodoItem from '../TodoItem';
 
 const TodoList: React.FC = () => {
-  return <div className={classes.wrapper}>Todo List</div>;
+  return (
+    <ul>
+      <TodoItem />
+      <TodoItem />
+      <TodoItem />
+    </ul>
+  );
 };
 
 export default TodoList;

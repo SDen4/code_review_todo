@@ -10,3 +10,9 @@
   height: 1px;
   background-color: brown;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -9,5 +9,13 @@ export const addTodo = (newTodo: TodoItemType) => {
   } as const;
 };
 
+export const delTodo = (delId: string) => {
+  return {
+    type: CONST.TODO_DEL,
+    delId,
+  } as const;
+};
+
 type addTodoType = ReturnType<typeof addTodo>;
-export type ActionsType = addTodoType;
+type delTodoType = ReturnType<typeof delTodo>;
+export type ActionsType = addTodoType | delTodoType;

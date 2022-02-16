@@ -16,6 +16,12 @@ export const TodoReducer = (
     case CONST.TODO_ADD:
       return { ...state, todos: [...state.todos, action.newTodo] };
 
+    case CONST.TODO_DEL:
+      return {
+        ...state,
+        todos: state.todos.filter((el) => el.id !== action.delId),
+      };
+
     default:
       return state;
   }

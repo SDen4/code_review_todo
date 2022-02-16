@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addTodo } from '../../store/TodoReducer/actions';
-import { TodoItemType } from '../../store/TodoReducer/types';
+import { findPictureSaga } from '../../store/TodoReducer/actionsSagas';
 
 import classes from './Input.module.css';
 
@@ -20,13 +19,7 @@ const Input: React.FC = () => {
 
     if (!newTodoText) return;
 
-    const newTodo: TodoItemType = {
-      id: String(new Date().getTime()),
-      title: newTodoText,
-      checked: false,
-    };
-
-    dispatch(addTodo(newTodo));
+    dispatch(findPictureSaga(newTodoText));
     setNewTodoText('');
   };
 

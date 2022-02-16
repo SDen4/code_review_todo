@@ -30,7 +30,10 @@ const TodoItem: React.FC<TodoType> = ({ todo }) => {
         <h3 className={clsx(todo.checked && classes.checked)}>{todo.title}</h3>
       </div>
 
-      <button onClick={deleteTodo}>Del</button>
+      <div className={classes.right}>
+        <img src={todo.pic} alt="todoImage" />
+        <button onClick={deleteTodo}>Del</button>
+      </div>
     </li>
   );
 };

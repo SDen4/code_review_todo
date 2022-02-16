@@ -5,7 +5,7 @@ import * as CONST from './constants';
 import { ActionsType } from './actions';
 
 const initialState: InitialStateType = {
-  todos: [{ id: '1', title: 'Init todo', checked: false }],
+  todos: [],
 };
 
 export const TodoReducer = (
@@ -20,6 +20,14 @@ export const TodoReducer = (
       return {
         ...state,
         todos: state.todos.filter((el) => el.id !== action.delId),
+      };
+
+    case CONST.TODO_CHECK:
+      return {
+        ...state,
+        todos: state.todos.map((el) =>
+          el.id === action.checkedId ? { ...el, checked: !el.checked } : el,
+        ),
       };
 
     default:

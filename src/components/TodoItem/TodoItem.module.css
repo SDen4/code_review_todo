@@ -44,3 +44,8 @@
 .wrapper button:hover {
   background-color: red;
 }
+
+.checked {
+  text-decoration: line-through;
+  color: lightgray;
+}

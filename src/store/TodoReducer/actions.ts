@@ -16,6 +16,14 @@ export const delTodo = (delId: string) => {
   } as const;
 };
 
+export const checkTodo = (checkedId: string) => {
+  return {
+    type: CONST.TODO_CHECK,
+    checkedId,
+  } as const;
+};
+
 type addTodoType = ReturnType<typeof addTodo>;
 type delTodoType = ReturnType<typeof delTodo>;
-export type ActionsType = addTodoType | delTodoType;
+type checkTodoType = ReturnType<typeof checkTodo>;
+export type ActionsType = addTodoType | delTodoType | checkTodoType;

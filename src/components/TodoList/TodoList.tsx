@@ -2,12 +2,14 @@ import React from 'react';
 
 import TodoItem from '../TodoItem';
 
-const TodoList: React.FC = () => {
+import { TodoListType } from './types';
+
+const TodoList: React.FC<TodoListType> = ({ todos }) => {
   return (
     <ul>
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      {todos.map((el) => (
+        <TodoItem key={el.id} todo={el} />
+      ))}
     </ul>
   );
 };

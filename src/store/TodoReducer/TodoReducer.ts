@@ -5,7 +5,7 @@ import * as CONST from './constants';
 import { ActionsType } from './actions';
 
 const initialState: InitialStateType = {
-  todos: [],
+  todos: [{ id: '1', title: 'Init todo', checked: false }],
 };
 
 export const TodoReducer = (

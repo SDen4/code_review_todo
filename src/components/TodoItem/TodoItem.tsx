@@ -1,13 +1,14 @@
 import React from 'react';
 
 import classes from './TodoItem.module.css';
+import { TodoType } from './types';
 
-const TodoItem: React.FC = () => {
+const TodoItem: React.FC<TodoType> = ({ todo }) => {
   return (
     <li className={classes.wrapper}>
       <div className={classes.left}>
-        <input type="checkbox" />
-        <h3>Todo title</h3>
+        <input type="checkbox" checked={todo.checked} />
+        <h3>{todo.title}</h3>
       </div>
 
       <button>Del</button>

@@ -23,7 +23,11 @@ function App() {
 
       <div className={classes.line} />
 
-      <TodoList todos={store.todos} />
+      {Boolean(store.todos.length) ? (
+        <TodoList todos={store.todos} />
+      ) : (
+        <div className={classes.noTodos}>There's no todos yet...</div>
+      )}
     </div>
   );
 }

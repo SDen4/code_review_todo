@@ -16,3 +16,10 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.noTodos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}

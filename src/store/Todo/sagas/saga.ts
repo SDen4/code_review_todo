@@ -9,7 +9,7 @@ import {
   todoErrorReq,
 } from '../ducks/duck';
 import { selectTodosList } from '../selectors/selector';
-import { TodoItemType } from '../types';
+import { actionType, TodoItemType } from '../types';
 import { API } from '../../../utils/api';
 
 async function getUserPic(randomUser: string) {
@@ -17,10 +17,11 @@ async function getUserPic(randomUser: string) {
   return response;
 }
 
-function* addTodoWorker(action: any) {
+function* addTodoWorker(action: actionType) {
+  yield console.log(action);
   try {
     const { payload } = action;
-    const randomUser: string = yield `*a${(Math.random() * 10).toFixed()}`;
+    const randomUser: string = yield `a${(Math.random() * 10).toFixed()}`;
     const { avatar_url } = yield getUserPic(randomUser);
 
     const newTodo: TodoItemType = yield {
@@ -44,7 +45,7 @@ function* addTodoWorker(action: any) {
   }
 }
 
-function* deleteTodoWorker(action: any) {
+function* deleteTodoWorker(action: actionType) {
   const { payload } = action;
   let todos: TodoItemType[] = yield select(selectTodosList);
   todos = todos.filter((el) => el.id !== payload);
@@ -55,7 +56,7 @@ function* deleteTodoWorker(action: any) {
   });
 }
 
-function* checkTodoWorker(action: any) {
+function* checkTodoWorker(action: actionType) {
   const { payload } = action;
   let todos: TodoItemType[] = yield select(selectTodosList);
   todos = todos.map((el) =>

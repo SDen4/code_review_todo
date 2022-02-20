@@ -4,3 +4,8 @@ export type TodoItemType = {
   checked: boolean;
   pic: string;
 };
+
+export type actionType = {
+  type: string;
+  payload: string;
+};

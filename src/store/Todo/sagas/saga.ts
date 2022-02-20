@@ -7,6 +7,7 @@ import {
   todoUpdateListSuccess,
   todoUpdateListError,
   todoErrorReq,
+  todoLoading,
 } from '../ducks/duck';
 import { selectTodosList } from '../selectors/selector';
 import { actionType, TodoItemType } from '../types';
@@ -18,8 +19,12 @@ async function getUserPic(randomUser: string) {
 }
 
 function* addTodoWorker(action: actionType) {
-  yield console.log(action);
   try {
+    yield put({
+      type: todoLoading.toString(),
+      payload: true,
+    });
+
     const { payload } = action;
     const randomUser: string = yield `a${(Math.random() * 10).toFixed()}`;
     const { avatar_url } = yield getUserPic(randomUser);
@@ -37,6 +42,10 @@ function* addTodoWorker(action: actionType) {
     yield put({
       type: todoUpdateListSuccess.toString(),
       payload: { todos },
+    });
+    yield put({
+      type: todoLoading.toString(),
+      payload: false,
     });
   } catch (error) {
     // eslint-disable-next-line no-console

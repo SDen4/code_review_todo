@@ -11,3 +11,8 @@ export const selectError = createSelector(
   (store: AppStateType) => store.todoReducer,
   (todoReducer) => todoReducer.todosError,
 );
+
+export const selectLoader = createSelector(
+  (store: AppStateType) => store.todoReducer,
+  (todoReducer) => todoReducer.loading,
+);

@@ -7,6 +7,7 @@ import {
 } from '../../store/Todo/selectors/selector';
 
 import Input from '../Input';
+
 import TodoList from '../TodoList';
 
 import classes from './App.module.css';
@@ -18,21 +19,23 @@ function App() {
   console.log('render app');
 
   return (
-    <div className={classes.app}>
-      <header className={classes.header}>
-        <h1>Code review todo</h1>
-        <Input />
-      </header>
+    <div className={classes.appWrapper}>
+      <div>
+        <header className={classes.header}>
+          <h1>Code review todo</h1>
+          <Input />
+        </header>
 
-      <div className={classes.line} />
+        <div className={classes.line} />
 
-      {Boolean(todosList.length) ? (
-        <TodoList todos={todosList} />
-      ) : (
-        <div className={classes.noTodos}>There's no todos yet...</div>
-      )}
+        {Boolean(todosList.length) ? (
+          <TodoList todos={todosList} />
+        ) : (
+          <div className={classes.noTodos}>There's no todos yet...</div>
+        )}
 
-      {todosError && <div>Attention! Error!</div>}
+        {todosError && <div>Attention! Error!</div>}
+      </div>
     </div>
   );
 }

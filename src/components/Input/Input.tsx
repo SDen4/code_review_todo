@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { findPictureSaga } from '../../store/TodoReducer/actionsSagas';
+import { todoAddReq } from '../../store/Todo/ducks/duck';
 
 import classes from './Input.module.css';
 
@@ -24,7 +24,7 @@ const Input: React.FC = () => {
 
     if (!newTodoText) return;
 
-    dispatch(findPictureSaga(newTodoText));
+    dispatch(todoAddReq(newTodoText));
     setNewTodoText('');
   };
 

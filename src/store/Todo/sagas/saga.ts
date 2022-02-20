@@ -1,6 +1,13 @@
 import { put, takeEvery, select } from 'redux-saga/effects';
 
-import { todoAddReq, todoDelReq, todoCheckReq, todoUpdateListSuccess } from '../ducks/duck';
+import {
+  todoAddReq,
+  todoDelReq,
+  todoCheckReq,
+  todoUpdateListSuccess,
+  todoUpdateListError,
+  todoErrorReq,
+} from '../ducks/duck';
 import { selectTodosList } from '../selectors/selector';
 import { TodoItemType } from '../types';
 import { API } from '../../../utils/api';
@@ -13,7 +20,7 @@ async function getUserPic(randomUser: string) {
 function* addTodoWorker(action: any) {
   try {
     const { payload } = action;
-    const randomUser: string = yield `a${(Math.random() * 10).toFixed()}`;
+    const randomUser: string = yield `*a${(Math.random() * 10).toFixed()}`;
     const { avatar_url } = yield getUserPic(randomUser);
 
     const newTodo: TodoItemType = yield {
@@ -33,6 +40,7 @@ function* addTodoWorker(action: any) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
+    yield put({ type: todoUpdateListError.toString() });
   }
 }
 
@@ -50,7 +58,9 @@ function* deleteTodoWorker(action: any) {
 function* checkTodoWorker(action: any) {
   const { payload } = action;
   let todos: TodoItemType[] = yield select(selectTodosList);
-  todos = todos.map((el) => (el.id === payload ? { ...el, checked: !el.checked } : el));
+  todos = todos.map((el) =>
+    el.id === payload ? { ...el, checked: !el.checked } : el,
+  );
 
   yield put({
     type: todoUpdateListSuccess.toString(),
@@ -58,8 +68,16 @@ function* checkTodoWorker(action: any) {
   });
 }
 
+function* errorTodoWorker() {
+  yield put({
+    type: todoUpdateListError.toString(),
+    payload: true,
+  });
+}
+
 export function* rootSaga() {
   yield takeEvery(todoAddReq, addTodoWorker);
   yield takeEvery(todoDelReq, deleteTodoWorker);
   yield takeEvery(todoCheckReq, checkTodoWorker);
+  yield takeEvery(todoErrorReq, errorTodoWorker);
 }

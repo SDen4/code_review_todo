@@ -6,3 +6,8 @@ export const selectTodosList = createSelector(
   (store: AppStateType) => store.todoReducer,
   (todoReducer) => todoReducer.todos,
 );
+
+export const selectError = createSelector(
+  (store: AppStateType) => store.todoReducer,
+  (todoReducer) => todoReducer.todosError,
+);

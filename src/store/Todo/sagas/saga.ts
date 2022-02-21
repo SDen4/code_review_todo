@@ -4,9 +4,9 @@ import {
   todoAddReq,
   todoDelReq,
   todoCheckReq,
-  todoUpdateListSuccess,
-  todoUpdateListError,
-  todoErrorReq,
+  todoUpdListSucc,
+  todoUpdListErr,
+  todoErrReq,
   todoLoading,
 } from '../ducks/duck';
 import { selectTodosList } from '../selectors/selector';
@@ -40,7 +40,7 @@ function* addTodoWorker(action: actionType) {
     todos = [...todos, newTodo];
 
     yield put({
-      type: todoUpdateListSuccess.toString(),
+      type: todoUpdListSucc.toString(),
       payload: { todos },
     });
     yield put({
@@ -50,7 +50,7 @@ function* addTodoWorker(action: actionType) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
-    yield put({ type: todoUpdateListError.toString() });
+    yield put({ type: todoUpdListErr.toString() });
   }
 }
 
@@ -60,7 +60,7 @@ function* deleteTodoWorker(action: actionType) {
   todos = todos.filter((el) => el.id !== payload);
 
   yield put({
-    type: todoUpdateListSuccess.toString(),
+    type: todoUpdListSucc.toString(),
     payload: { todos },
   });
 }
@@ -73,14 +73,14 @@ function* checkTodoWorker(action: actionType) {
   );
 
   yield put({
-    type: todoUpdateListSuccess.toString(),
+    type: todoUpdListSucc.toString(),
     payload: { todos },
   });
 }
 
 function* errorTodoWorker() {
   yield put({
-    type: todoUpdateListError.toString(),
+    type: todoUpdListErr.toString(),
     payload: true,
   });
 }
@@ -89,5 +89,5 @@ export function* rootSaga() {
   yield takeEvery(todoAddReq, addTodoWorker);
   yield takeEvery(todoDelReq, deleteTodoWorker);
   yield takeEvery(todoCheckReq, checkTodoWorker);
-  yield takeEvery(todoErrorReq, errorTodoWorker);
+  yield takeEvery(todoErrReq, errorTodoWorker);
 }

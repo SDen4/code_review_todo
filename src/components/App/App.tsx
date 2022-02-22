@@ -5,10 +5,10 @@ import {
   selectTodosList,
   selectError,
 } from '../../store/Todo/selectors/selector';
+import { selectCount } from '../../store/Counter/selectors/selector';
+
 import Counter from '../Counter';
-
 import Input from '../Input';
-
 import TodoList from '../TodoList';
 
 import classes from './App.module.css';
@@ -16,6 +16,8 @@ import classes from './App.module.css';
 function App() {
   const todosList = useSelector(selectTodosList);
   const todosError = useSelector(selectError);
+
+  const count = useSelector(selectCount);
 
   console.log('render app');
 
@@ -37,7 +39,7 @@ function App() {
 
         {todosError && <div>Attention! Error!</div>}
 
-        <Counter />
+        <Counter count={count} />
       </div>
     </div>
   );

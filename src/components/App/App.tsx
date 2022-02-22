@@ -5,6 +5,7 @@ import {
   selectTodosList,
   selectError,
 } from '../../store/Todo/selectors/selector';
+import Counter from '../Counter';
 
 import Input from '../Input';
 
@@ -35,6 +36,8 @@ function App() {
         )}
 
         {todosError && <div>Attention! Error!</div>}
+
+        <Counter />
       </div>
     </div>
   );

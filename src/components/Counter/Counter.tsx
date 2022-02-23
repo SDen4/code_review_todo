@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { counterDecr, counterInc } from '../../store/Counter/ducks/duck';
+import { counterDecr, counterInc } from '../../store/Counter/ducks';
 
 import { counterType } from './types';
 

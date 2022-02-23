@@ -1,6 +1,6 @@
 import { put, takeEvery, select } from 'redux-saga/effects';
 
-import { counterDecr, counterInc, counterUpd } from '../ducks/duck';
+import { counterDecr, counterInc, counterUpd } from '../ducks';
 
 import { selectCount } from '../selectors/selector';
 

@@ -8,7 +8,7 @@ import {
   todoUpdListErr,
   todoErrReq,
   todoLoading,
-} from '../ducks/duck';
+} from '../ducks';
 import { selectTodosList } from '../selectors/selector';
 import { actionType, TodoItemType } from '../types';
 import { API } from '../../../utils/api';

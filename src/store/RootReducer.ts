@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import todoReducer from './Todo/ducks/duck';
-import countReduser from './Counter/ducks/duck';
+import { todoReducer } from './Todo/ducks';
+import { countReduser } from './Counter/ducks';
 
 export const RootReducer = combineReducers({
   todoReducer,

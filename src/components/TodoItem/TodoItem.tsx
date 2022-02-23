@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 
-import { todoDelReq, todoCheckReq } from '../../store/Todo/ducks/duck';
+import { todoDelReq, todoCheckReq } from '../../store/Todo/ducks';
 
 import { TodoType } from './types';
 
@@ -22,7 +22,11 @@ const TodoItem: React.FC<TodoType> = ({ todo }) => {
   return (
     <li className={classes.wrapper}>
       <div className={classes.left}>
-        <input type="checkbox" checked={todo.checked} onChange={checkTodoItem} />
+        <input
+          type="checkbox"
+          checked={todo.checked}
+          onChange={checkTodoItem}
+        />
         <h3 className={clsx(todo.checked && classes.checked)}>{todo.title}</h3>
       </div>
 

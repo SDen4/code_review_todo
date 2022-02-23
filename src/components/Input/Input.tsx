@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { todoAddReq } from '../../store/Todo/ducks/duck';
+import { todoAddReq } from '../../store/Todo/ducks';
 
 import classes from './Input.module.css';
 

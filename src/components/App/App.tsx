@@ -12,6 +12,7 @@ import Input from '../Input';
 import TodoList from '../TodoList';
 
 import classes from './App.module.css';
+import { CustomSelect } from '../CustomSelect';
 
 function App() {
   const todosList = useSelector(selectTodosList);
@@ -40,6 +41,10 @@ function App() {
         {todosError && <div>Attention! Error!</div>}
 
         <Counter count={count} />
+
+        <div className={classes.line} />
+
+        <CustomSelect />
       </div>
     </div>
   );

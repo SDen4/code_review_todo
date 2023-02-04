@@ -8,6 +8,7 @@
 .line {
   width: 100%;
   height: 1px;
+  margin: 20px 0;
   background-color: brown;
 }
 
@@ -15,7 +16,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .header h1 {

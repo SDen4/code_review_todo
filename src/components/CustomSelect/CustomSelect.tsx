@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -6,14 +6,18 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { dataSelect, loadingSelect } from '../../store/CustomSelect/selector';
+import { customSelectDataSaga } from '../../store/CustomSelect/action';
+import { resetCS } from '../../store/CustomSelect/reducer';
+import Loader from '../Loader';
 
 export const CustomSelect = () => {
-  const data = [
-    { id: '1', name: 'ten', value: 10 },
-    { id: '2', name: 'twenty', value: 20 },
-    { id: '3', name: 'thirty', value: 30 },
-    { id: '4', name: 'fourty', value: 40 },
-  ];
+  const dispatch = useDispatch();
+
+  const data = useSelector(dataSelect);
+  const loading = useSelector(loadingSelect);
 
   const [age, setAge] = useState(data[0]);
 
@@ -27,22 +31,36 @@ export const CustomSelect = () => {
     console.log('selected data: ', newData);
   };
 
+  useEffect(() => {
+    dispatch(customSelectDataSaga());
+
+    return () => {
+      dispatch(resetCS());
+    };
+  }, [dispatch]);
+
   return (
-    <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Age</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={age.value}
-        label="Age"
-        onChange={handleChange}
-      >
-        {data.map((el) => (
-          <MenuItem key={el.id} value={el.value}>
-            {el.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age?.value}
+            label="Age"
+            onChange={handleChange}
+          >
+            {data.map((el) => (
+              <MenuItem key={el.id} value={el.value}>
+                {el.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
+    </>
   );
 };
